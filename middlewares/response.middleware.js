@@ -1,6 +1,15 @@
 const responseMiddleware = (req, res, next) => {
    // TODO: Implement middleware that returns result of the query
-    next();
+    if (req.query) {
+        return req.query;
+    } else {
+        const error = {
+            error: true,
+            message: 'Can not get params!'
+        };
+        return error;
+    }
+   next();
 }
 
 exports.responseMiddleware = responseMiddleware;
